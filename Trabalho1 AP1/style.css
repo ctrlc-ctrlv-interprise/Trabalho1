@@ -17,7 +17,7 @@ body {
     margin: 0 auto;
     background-color: #F9FBFD;
     box-shadow: -5px 0 5px -5px rgba(0,0,0,0.3), 5px 0 5px -5px rgba(0,0,0,0.3);
-    height: 100vh;
+    height: 100%;
 }
 
 header {
@@ -139,3 +139,32 @@ header {
     font-weight: bold;
 }
 
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+  }
+  table, th, td {
+    border: 1px solid black;
+  }
+  th, td {
+    padding: 10px;
+    text-align: left;
+  }
+  th {
+    background-color: #404E82;
+    color: white;
+  }
+ 
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  form p{
+    display: flex;
+    justify-content: center;
+   }
+
+   form p input{
+    cursor: pointer;
+   }

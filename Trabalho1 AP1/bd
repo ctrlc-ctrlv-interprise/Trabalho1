@@ -1,0 +1,101 @@
+CREATE DATABASE IF NOT EXISTS universidade;
+USE universidade;
+
+-- Tabela de Períodos
+CREATE TABLE Periodos (
+    id INT(1)PRIMARY KEY,
+    nome VARCHAR(1) NOT NULL
+);
+
+-- Tabela de Materias
+CREATE TABLE Materias (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    codigo VARCHAR(20) NOT NULL,
+    nome VARCHAR(100) NOT NULL,
+    dias VARCHAR(6) NOT NULL,
+    turno CHAR(1) NOT NULL,
+    horario VARCHAR(4),
+    periodo_id INT,
+    FOREIGN KEY (periodo_id) REFERENCES Periodos(id)
+);
+
+-- Tabelas de cada Período
+CREATE TABLE Periodo1Materias (
+    materia_id INT,
+    FOREIGN KEY (materia_id) REFERENCES Materias(id)
+);
+
+CREATE TABLE Periodo2Materias (
+    materia_id INT,
+    FOREIGN KEY (materia_id) REFERENCES Materias(id)
+);
+
+CREATE TABLE Periodo3Materias (
+    materia_id INT,
+    FOREIGN KEY (materia_id) REFERENCES Materias(id)
+);
+
+CREATE TABLE Periodo5Materias (
+    materia_id INT,
+    FOREIGN KEY (materia_id) REFERENCES Materias(id)
+);
+
+CREATE TABLE Periodo7Materias (
+    materia_id INT,
+    FOREIGN KEY (materia_id) REFERENCES Materias(id)
+);
+
+CREATE TABLE Periodo8Materias (
+    materia_id INT,
+    FOREIGN KEY (materia_id) REFERENCES Materias(id)
+);
+
+
+
+INSERT INTO Periodos (id, nome) VALUES (1, 'Período 1');
+
+INSERT INTO Materias (codigo, nome, dias, turno, horario, periodo_id) VALUES ('AAS0050', 'Análise e Expressão Textual', '35', 'N', '34', 1);
+
+INSERT INTO Materias (codigo, nome, dias, turno, horario, periodo_id) VALUES ('AEX0149', 'Introdução à Computação e Sistemas de Informação', '35', 'N', '12', 1);
+
+INSERT INTO Materias (codigo, nome, dias, turno, horario, periodo_id) VALUES ('AEX0152', 'Princípios de Engenharia de Software', '4', 'N', '1234', 1);
+
+INSERT INTO Materias (codigo, nome, dias, turno, horario, periodo_id) VALUES ('AEX0153', 'Lógica e Matemática Discreta', '2', 'N', '1234', 1);
+
+INSERT INTO Materias (codigo, nome, dias, turno, horario, periodo_id) VALUES ('AEX0228', 'Algoritmos e Programação I', '6', 'N', '1234', 1);
+
+
+
+INSERT INTO Periodos (id, nome) VALUES (2, 'Período 2');
+
+INSERT INTO Materias (codigo, nome, dias, turno, horario, periodo_id) VALUES ('AEX0232', 'Algoritmos e Programação II', '6', 'N', '1234', 2);
+
+INSERT INTO Periodos (id, nome) VALUES (3, 'Período 3');
+INSERT INTO Materias (codigo, nome, dias, turno, horario, periodo_id) VALUES ('AEX0102', 'Cálculo II', '24', 'N', '12', 3);
+INSERT INTO Materias (codigo, nome, dias, turno, horario, periodo_id) VALUES ('AEX0157', 'Fundamentos de Banco de Dados', '4', 'N', '34', 3);
+INSERT INTO Materias (codigo, nome, dias, turno, horario, periodo_id) VALUES ('AEX0157', 'Fundamentos de Banco de Dados', '5', 'N', '12', 3);
+INSERT INTO Materias (codigo, nome, dias, turno, horario, periodo_id) VALUES ('AEX0158', 'Algoritmos e Programação III', '6', 'N', '1234', 3);
+INSERT INTO Materias (codigo, nome, dias, turno, horario, periodo_id) VALUES ('AEX0159', 'Análise e Projeto de Sistemas', '3', 'N', '12', 3);
+INSERT INTO Materias (codigo, nome, dias, turno, horario, periodo_id) VALUES ('AEX0159', 'Análise e Projeto de Sistemas', '5', 'N', '34', 3);
+INSERT INTO Materias (codigo, nome, dias, turno, horario, periodo_id) VALUES ('AEX0500', 'Teoria Geral dos Sistemas', '23', 'N', '34', 3);
+
+
+INSERT INTO Periodos (id, nome) VALUES (5, 'Período 5');
+INSERT INTO Materias (codigo, nome, dias, turno, horario, periodo_id) VALUES ('AAS0178', 'Sociologia', '24', 'N', '34', 5);
+INSERT INTO Materias (codigo, nome, dias, turno, horario, periodo_id) VALUES ('AEX0162', 'Gerência de Projetos', '6', 'N', '1234', 5);
+INSERT INTO Materias (codigo, nome, dias, turno, horario, periodo_id) VALUES ('AEX0163', 'Sistemas Operacionais', '4', 'N', '12', 5);
+INSERT INTO Materias (codigo, nome, dias, turno, horario, periodo_id) VALUES ('AEX0163', 'Sistemas Operacionais', '5', 'N', '34', 5);
+INSERT INTO Materias (codigo, nome, dias, turno, horario, periodo_id) VALUES ('AEX0503', 'Sistemas de Apoio a Decisão', '23', 'N', '12', 5);
+INSERT INTO Materias (codigo, nome, dias, turno, horario, periodo_id) VALUES ('AVE0004', 'Estatística', '3', 'N', '34', 5);
+INSERT INTO Materias (codigo, nome, dias, turno, horario, periodo_id) VALUES ('AVE0004', 'Estatística', '5', 'N', '12', 5);
+
+
+INSERT INTO Periodos (id, nome) VALUES (7, 'Período 7');
+INSERT INTO Materias (codigo, nome, dias, turno, horario, periodo_id) VALUES ('AEX0507', 'Inteligência Artificial', '34', 'N', '34', 7);
+INSERT INTO Materias (codigo, nome, dias, turno, horario, periodo_id) VALUES ('AEX0509', 'Trabalho de Conclusão de Curso I', '7', 'M', '2345', 7);
+INSERT INTO Materias (codigo, nome, dias, turno, horario, periodo_id) VALUES ('ATI1947', 'Interação Humano-Computador', '45', 'N', '12', 7);
+
+INSERT INTO Periodos (id, nome) VALUES (8, 'Período 8');
+INSERT INTO Materias (codigo, nome, dias, turno, horario, periodo_id) VALUES ('AEX0508', 'Inteligência de Negócios', '4', 'N', '1234', 8);
+INSERT INTO Materias (codigo, nome, dias, turno, horario, periodo_id) VALUES ('AEX0560', 'Trabalho de Conclusão de Curso II', '7', 'T', '2345', 8);
+
