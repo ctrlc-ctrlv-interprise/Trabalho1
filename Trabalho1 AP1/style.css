@@ -1,0 +1,141 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #ffffff; /* Cor de fundo */
+    background-image: linear-gradient(to right, #ddd 1px, transparent 1px),
+                      linear-gradient(to bottom, #ddd 1px, transparent 1px);
+    background-size: 5px 5px; /* Tamanho dos quadrados */
+}
+
+.container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: #F9FBFD;
+    box-shadow: -5px 0 5px -5px rgba(0,0,0,0.3), 5px 0 5px -5px rgba(0,0,0,0.3);
+    height: 100vh;
+}
+
+header {
+    background: #404E82;
+    color: #FFF;
+    border-bottom: 3px solid #D99C44;
+    padding: 10px;
+}
+
+#cabecalho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#info-sistemas h1 {
+    font-size: 1.2em;
+    margin: 0;
+    font-family: Arial;
+    letter-spacing: 0.1rem;
+}
+
+#info-sistemas h3 {
+    font-size: 0.8em;
+    font-weight: normal;
+    margin: 0;
+}
+
+#acessibilidade {
+    display: flex;
+    align-items: center;
+   
+}
+
+#acessibilidade span {
+    margin: 0 5px;
+    font-size: 0.9em;
+    cursor: pointer;
+    padding-right: 5px;
+}
+
+#tempo-sessao {
+    font-size: 0.9em;
+    margin-right: 10px;
+   
+    border-right: 3px solid #D99C44;
+
+}
+
+#sair {
+    font-size: 0.9em;
+    font-weight: bold;
+}
+
+#user-info {
+    background-color: #C4D2EB;
+    padding: 10px;
+    border-bottom: 1px solid #CCC;
+}
+
+#user-info p {
+    margin: 0;
+    font-size: 0.9em;
+}
+
+#notificacao {
+    padding: 10px;
+    color: red;
+}
+
+#notificacao p {
+    margin: 5px 0;
+    font-size: 0.9em;
+}
+
+#modulos {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+}
+
+.modulo {
+    text-align: center;
+    list-style: none;
+    padding: 3px 0px 3px 0px;
+    background: #E6ECF7;
+    color: #222;
+    position: relative;
+   
+    font-size: 0.84rem;
+    display: flex;
+}
+
+#modulos, li, span{
+    padding-left: 10px;
+}
+#modulos, li{
+   width: 140vh;
+   margin-left: 40px;
+    cursor: pointer;
+    display: flex;
+}
+
+.modulo p {
+    margin: 5px 0;
+}
+
+.modulo img {
+    vertical-align: middle;
+}
+
+#ajuda{
+    border-left: 3px solid #D99C44;
+    border-right: 3px solid #D99C44;
+    margin-left: 3px;
+}
+
+#pname{
+    font-weight: bold;
+}
+
