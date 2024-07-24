@@ -168,3 +168,19 @@ table {
    form p input{
     cursor: pointer;
    }
+
+  
+
+@media (max-width: 500px) {
+
+
+    .container {
+        padding: 0 10px; 
+        max-width: 2000px;
+        width: 1500px;
+        
+    }
+
+    
+
+}
