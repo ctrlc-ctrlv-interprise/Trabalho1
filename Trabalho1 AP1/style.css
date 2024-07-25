@@ -181,6 +181,20 @@ table {
         
     }
 
+    #modulos{
+        display: flex;
+        flex-wrap: wrap; /* Permite que os itens se movam para uma nova linha */
+        padding: 0;
+        margin: 0;
+    }
     
+    #modulos, li{
+        flex: 1 0 100px; /* Defina a largura mínima de cada item */
+        margin: 5px; /* Espaçamento entre os itens */
+        padding: 10px;
+        box-sizing: border-box;
+        text-align: center;
+    }
+
 
 }
