@@ -125,6 +125,8 @@ INSERT INTO Materias (codigo, nome, dias, turno, horario, periodo_id) VALUES ('A
 INSERT INTO Materias (codigo, nome, dias, turno, horario, periodo_id) VALUES ('AEX0172', 'Aspectos Filosóficos e Sociológicos de Informática', '35', 'N', '34', 8);
 INSERT INTO Materias (codigo, nome, dias, turno, horario, periodo_id) VALUES ('AEX0184', 'Infra - Estrutura de Hardware', '3', 'N', '34', 8);
 INSERT INTO Materias (codigo, nome, dias, turno, horario, periodo_id) VALUES ('AEX0184', 'Infra - Estrutura de Hardware', '5', 'N', '12', 8);
+
+
 INSERT INTO Materias (codigo, nome, dias, turno, horario, periodo_id) VALUES ('AEX0185', 'Paradigmas de Programação', '4', 'T', '2345', 8);
 INSERT INTO Materias (codigo, nome, dias, turno, horario, periodo_id) VALUES ('AEX0187', 'Aprendizado de Máquina', '5', 'T', '2345', 8);
 INSERT INTO Materias (codigo, nome, dias, turno, horario, periodo_id) VALUES ('AEX0188', 'Mineração de Dados', '45', 'N', '12', 8);

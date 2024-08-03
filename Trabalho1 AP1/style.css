@@ -18,6 +18,7 @@ body {
     background-color: #F9FBFD;
     box-shadow: -5px 0 5px -5px rgba(0,0,0,0.3), 5px 0 5px -5px rgba(0,0,0,0.3);
     height: 100%;
+    overflow: hidden;
 }
 
 header {
@@ -39,6 +40,8 @@ header {
     font-family: Arial;
     letter-spacing: 0.1rem;
 }
+
+
 
 #info-sistemas h3 {
     font-size: 0.8em;
@@ -95,8 +98,9 @@ header {
 
 #modulos {
     display: flex;
-    justify-content: space-around;
-    padding: 10px;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
 }
 
 .modulo {
@@ -107,16 +111,20 @@ header {
     color: #222;
     position: relative;
    
-    font-size: 0.84rem;
+    font-size: max(15px, 0.7vw);
     display: flex;
 }
 
-#modulos, li, span{
-    padding-left: 10px;
+#modulos ul{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+   
 }
 #modulos, li{
-   width: 140vh;
-   margin-left: 40px;
+   width: 90%;
+   margin-left: 1%;
     cursor: pointer;
     display: flex;
 }
@@ -154,10 +162,15 @@ table {
   th {
     background-color: #404E82;
     color: white;
+    font-size: max(10px, 1vw);
   }
  
   tr:nth-child(even) {
     background-color: #f2f2f2;
+  }
+
+  td {
+    font-size: max(10px, 0.7vw);
   }
 
   form p{
@@ -171,30 +184,24 @@ table {
 
   
 
-@media (max-width: 500px) {
 
 
-    .container {
-        padding: 0 10px; 
-        max-width: 2000px;
-        width: 1500px;
-        
-    }
 
-    #modulos{
-        display: flex;
-        flex-wrap: wrap; /* Permite que os itens se movam para uma nova linha */
-        padding: 0;
-        margin: 0;
-    }
+@media(max-width: 600px){
+
+#modulos ul{
+    display: flex;
+    flex-wrap: wrap;
     
-    #modulos, li{
-        flex: 1 0 100px; /* Defina a largura mínima de cada item */
-        margin: 5px; /* Espaçamento entre os itens */
-        padding: 10px;
-        box-sizing: border-box;
-        text-align: center;
-    }
+}
+
+td{
+    padding: 0;
+}
+
+th{
+    padding: 0;
+}
 
 
 }
