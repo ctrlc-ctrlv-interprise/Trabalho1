@@ -42,7 +42,7 @@ const getClassByCode = async (req, res)=>{
     return res.status(200).json(classFound);
 }
 
-// NOT FINISHED
+
 const verifyConflit = async (req, res)=>{
     var classResult=[];
     var conflict = [];

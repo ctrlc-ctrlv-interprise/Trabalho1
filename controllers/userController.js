@@ -14,16 +14,14 @@ const getUser = async (req, res) => {
 const registerUser = async (req, res) => {
     const userExist = await User.findByPk(req.body.Email)
     if (userExist) return res.status(400).json("User Already exist");
-
-    console.log('aaaaa')
-    const FirstName = req.body.FirstName;
+    const Username = req.body.Username;
     const Password = req.body.Password;
     const Email = req.body.Email;
-    if (!FirstName || !Password || !Email) return res.status(400).json("Some data is empty")
+    if (!Username || !Password || !Email) return res.status(400).json("Some data is empty")
     const REFRESH_TOKEN = jwt.sign(
         {
             userInfo: {
-                FirstName: FirstName,
+                Username: Username,
                 Email: Email,
                 Roles: 200
             }
@@ -36,7 +34,7 @@ const registerUser = async (req, res) => {
         {
             userInfo: {
                 userInfo: {
-                    FirstName: FirstName,
+                    Username: Username,
                     Email: Email,
                     Roles: 200
                 }
@@ -49,12 +47,12 @@ const registerUser = async (req, res) => {
     const result = await User.create({
         RefreshToken: REFRESH_TOKEN,
         Roles: 200,
-        Classes: '',
-        FirstName,
+        Classes: [],
+        Username,
         Password,
         Email,
     });
-    res.cookie('jwt', REFRESH_TOKEN,{expiresIn: '24h', httpOnly: true})
+    res.cookie('jwt', REFRESH_TOKEN, { expiresIn: '24h', httpOnly: true })
     return res.json(ACCESS_TOKEN);
 }
 
@@ -74,4 +72,29 @@ const getUserByEmail = async (req, res) => {
     if (!userFound) return res.status(400).json('User not found');
     return res.status(200).json(userFound);
 }
-module.exports = { getUser, registerUser, deleteUser, getUserByEmail };
+
+
+//TODO: THIS NEEDS FIX
+const registerClassToUser = async (req, res) => {
+    const username = req.body.userInfo;
+    const classes = req.body.classes;
+    if (!classes) return res.status(400).json('Some data is empty');
+    if (!username) return res.status(400).json('Some data is empty');
+
+    const foundUser = await User.findOne({ where: { UserName: username } });
+
+    if (!foundUser) return res.status(400).json('User not found');
+
+    if(!foundUser.Classes || classes.length<7){
+        classes.push(...JSON.stringify(foundUser.Classes))
+        foundUser.Classes = classes;
+        await foundUser.save();
+        return res.status(200).json(classes)
+    }else{
+        if ((foundUser.Classes.length + classes.length) > 6) return res.status(400).json('Numero máximo de matérias é 7');
+    }
+
+
+}
+
+module.exports = { getUser, registerUser, deleteUser, getUserByEmail, registerClassToUser };
