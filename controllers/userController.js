@@ -10,7 +10,7 @@ const getUser = async (req, res) => {
     return res.status(200).json(result);
 }
 
-//TODO: incrypt password
+//TODO: incrypt password; verify null classes at mysql
 const registerUser = async (req, res) => {
     const userExist = await User.findByPk(req.body.Email)
     if (userExist) return res.status(400).json("User Already exist");
@@ -47,7 +47,7 @@ const registerUser = async (req, res) => {
     const result = await User.create({
         RefreshToken: REFRESH_TOKEN,
         Roles: 200,
-        Classes: [],
+        Classes: null,
         Username,
         Password,
         Email,
@@ -74,27 +74,30 @@ const getUserByEmail = async (req, res) => {
 }
 
 
-//TODO: THIS NEEDS FIX
+
 const registerClassToUser = async (req, res) => {
+    var tempClasses = []
     const username = req.body.userInfo;
     const classes = req.body.classes;
-    if (!classes) return res.status(400).json('Some data is empty');
-    if (!username) return res.status(400).json('Some data is empty');
+    if (!classes || !username) return res.status(400).json('Some data is empty');
+    if(classes.length >7) return res.status(400).json("Maximo 7 matérias")
 
     const foundUser = await User.findOne({ where: { UserName: username } });
 
     if (!foundUser) return res.status(400).json('User not found');
 
-    if(!foundUser.Classes || classes.length<7){
-        classes.push(...JSON.stringify(foundUser.Classes))
-        foundUser.Classes = classes;
-        await foundUser.save();
+    if(foundUser.Classes == null) {
+        foundUser.Classes = classes
+        await foundUser.save()
         return res.status(200).json(classes)
     }else{
-        if ((foundUser.Classes.length + classes.length) > 6) return res.status(400).json('Numero máximo de matérias é 7');
+        if((classes.length + JSON.parse(foundUser.Classes).length)>7) return res.status(400).json("Maximo 7 matérias")
+        JSON.parse(foundUser.Classes).map((e)=>tempClasses.push(e))
+        classes.map((e)=> tempClasses.push(e));
+        foundUser.Classes = tempClasses
+        await foundUser.save()
+        return res.status(200).json(tempClasses)
     }
-
-
 }
 
 module.exports = { getUser, registerUser, deleteUser, getUserByEmail, registerClassToUser };

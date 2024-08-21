@@ -72,11 +72,14 @@ async function handleSubmit(){
             "Content-Type": "application/json",
         },
         method:"POST",
-        body: JSON.stringify({ClassCodes: checkedClasses})
+        body: JSON.stringify({
+            ClassCodes: checkedClasses,
+            userInfo: getCookie('userInfo')
+        })
     })
     const response = await result.json()
     if(response != "NO CONFLICT") return alert(response)
-    
+
     const submit = await fetch("http://localhost:3333/registerToUser", {
         headers: {
             "Content-Type": "application/json",

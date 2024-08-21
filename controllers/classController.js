@@ -1,4 +1,5 @@
 const Class = require('../models/class.js');
+const User = require('../models/user.js');
 const { Op } = require('sequelize');
 
 
@@ -46,13 +47,28 @@ const getClassByCode = async (req, res)=>{
 const verifyConflit = async (req, res)=>{
     var classResult=[];
     var conflict = [];
+    var tempClasses = [];
     const classCodes = req.body.ClassCodes;
+    const username = req.body.userInfo;
+    const ResultUser = await User.findOne({where: {
+        UserName:username,
+    },
+});
+    if(!(ResultUser.Classes == null)){
+        JSON.parse(ResultUser.Classes).map((e)=>tempClasses.push(e))
+    }
+    const userClasses = await Class.findAll({where: {
+        ClassCode:tempClasses,
+    },
+});
+
     const Result = await Class.findAll({where: {
         ClassCode:classCodes,
     },
 });
-
+    
     Result.map((e)=>classResult.push(e.dataValues))
+    userClasses.map((e)=>classResult.push(e.dataValues))
     for(var i =0; i<classResult.length; i++){
         for(var j = (1+i); j<classResult.length; j++){
         if(!verifyTime(classResult[i], classResult[j])){
@@ -64,6 +80,7 @@ const verifyConflit = async (req, res)=>{
 }
 
 
+//TODO: ADD TIME TO FULL
 function getTimeInformation(ClassTimeInformationCode){
     //inFull 0: Days; 1: turn; 2: time
     var inFull=[];
@@ -152,7 +169,9 @@ function getTimeInformation(ClassTimeInformationCode){
 function verifyTime(ClassCode1, ClassCode2){
     const classInformation1 = getTimeInformation(ClassCode1.ClassTimeCode);
     const classInformation2 = getTimeInformation(ClassCode2.ClassTimeCode);
-    var conflict;
+    console.log(classInformation1)
+    console.log(classInformation2)
+    var conflict = false;
     var sameDay = false;
 
     //verify turn
@@ -166,7 +185,10 @@ function verifyTime(ClassCode1, ClassCode2){
     
     //verify time
     classInformation1.classTime.map((e)=>{
-        if(classInformation2.classTime.includes(e) && sameDay &&(ClassCode1.ClassCode !=ClassCode2.ClassCode)) conflict = true;
+        if((classInformation2.classTime.includes(e)) && sameDay &&(ClassCode1.classTurn ==ClassCode2.classTurn)) {
+            conflict = true;
+        }
+        console.log((ClassCode1.ClassCode !=ClassCode2.ClassCode))
     })
 
     if(conflict) return false
