@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar Matérias</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="addmatStyle.css">
+    <link rel="stylesheet" href="styletxtmat.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div id="cabecalho">
+                <div id="info-sistemas">
+                    <h1>UFERSA - SIGAA -</h1>
+                    <h3>Sistema Integrado de Gestão de Atividades Acadêmicas</h3>
+                </div>
+                <div id="acessibilidade">
+                    <span>A+</span>
+                    <span>A-</span>
+                    <span id="ajuda">Ajuda?</span>
+                    <span id="tempo-sessao">Tempo de Sessão: 00:00</span>
+                    <span id="sair">SAIR</span>
+                </div>
+            </div>
+        </header>
+        <main>
+            <section id="user-info">
+                <p id="pname">DANIEL DE S. ALVES</p>
+                <p>CENTRO MULTIDISCIPLINAR - ANGICOS (11.01.23.19)</p>
+                <section id="modulos">
+                    <ul>
+                        <li class="modulo"><img src="./img/modulos.gif" alt="">  <span> Módulos </span></li>
+                        <li class="modulo"><img src="./img/mailbox_small.gif" alt=""><span>Caixa Postal</span></li>
+                        <li class="modulo"><img src="./img/chamado.gif" alt=""><span>Abrir Chamado</span></li>
+                        <li class="modulo"><img src="./img/menu_unidade.gif" alt=""><span>Menu Doscente</span></li>
+                        <li class="modulo"><img src="./img/pessoal.gif" alt=""><span>Alterar Senha</span></li>
+                    </ul>
+                </section>
+            </section>
+
+            <section class="cont-materias">
+                <div id="add-mat">
+                    <div id="btn-escolha">
+                        <div id="esc1"><a href="./addmaterias.html">Formulário</a></div>
+                        <div id="esc2"><a href="./addmattxt.html">Arquivo txt</a></div>
+                      
+                    </div>
+                    <h2>Adicionar Materia</h2>
+                   
+                    <form action="" method="post" id="formularioUpload">
+                        
+                       <h2>Upload Arquivo .txt</h2>
+                       <input type="file"id="inputArquivo" name="enviar_arquivo" placeholder="Selecione um arquivo" accept=".txt">
+                        
+                       <div id="submit-arquivo">
+                            <input type="submit" value="Enviar Arquivo">
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="contadortempo.js"></script>
+    <script src="lertxt.js"></script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar Matérias</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="addmatStyle.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div id="cabecalho">
+                <div id="info-sistemas">
+                    <h1>UFERSA - SIGAA -</h1>
+                    <h3>Sistema Integrado de Gestão de Atividades Acadêmicas</h3>
+                </div>
+                <div id="acessibilidade">
+                    <span>A+</span>
+                    <span>A-</span>
+                    <span id="ajuda">Ajuda?</span>
+                    <span id="tempo-sessao">Tempo de Sessão: 00:00</span>
+                    <span id="sair">SAIR</span>
+                </div>
+            </div>
+        </header>
+        <main>
+            <section id="user-info">
+                <p id="pname">DANIEL DE S. ALVES</p>
+                <p>CENTRO MULTIDISCIPLINAR - ANGICOS (11.01.23.19)</p>
+                <section id="modulos">
+                    <ul>
+                        <li class="modulo"><img src="./img/modulos.gif" alt="">  <span> Módulos </span></li>
+                        <li class="modulo"><img src="./img/mailbox_small.gif" alt=""><span>Caixa Postal</span></li>
+                        <li class="modulo"><img src="./img/chamado.gif" alt=""><span>Abrir Chamado</span></li>
+                        <li class="modulo"><img src="./img/menu_unidade.gif" alt=""><span>Menu Doscente</span></li>
+                        <li class="modulo"><img src="./img/pessoal.gif" alt=""><span>Alterar Senha</span></li>
+                    </ul>
+                </section>
+            </section>
+
+            <section class="cont-materias">
+                <div id="add-mat">
+                    <div id="btn-escolha">
+                        <div id="esc1"><a href="./addmaterias.html">Formulário</a></div>
+                        <div id="esc2"><a href="./addmattxt.html">Arquivo txt</a></div>
+                    </div>
+                    <h2>Adicionar Materia</h2>
+                    <form action="" method="">
+                        <div id="opt-1"><p>Codigo da Disciplina: </p><input type="text" placeholder="Digite o codigo da materia"></div>
+                        <div id="opt-2">
+                            <hr>
+                           <h3>Turno da Materia</h3>
+                            <label for="Matutino">
+                                <input type="radio" name="opcao" id="Matutino"> 
+                                <p>Matutino</p>
+                            </label>
+                           
+                            <label for="Vespertino">
+                                <input type="radio" name="opcao" id="Vespertino"> <p>Vespertino</p>
+                             </label>
+                            
+                             <label for="Noturno">
+                                 <input type="radio" name="opcao" id="Noturno"> <p>Noturno</p>
+                             </label>
+
+                             <hr>
+                        </div>
+                        <div id="opt-3">
+                            <h3> Dias </h3>
+
+                            <label for="Segunda">
+                                <input type="radio" name="dia" id="Segunda"> <p>Segunda</p>
+                            </label>
+
+                            <label for="Terca">
+                                <input type="radio" name="dia" id="Terca"> <p>Terca</p>
+                            </label>
+
+                            <label for="Quarta">
+                                <input type="radio" name="dia" id="Quarta"> <p>Quarta</p>
+                            </label>
+
+                            <label for="Quinta">
+                                <input type="radio" name="dia" id="Quinta"> <p>Quinta</p>
+                            </label>
+
+                            <label for="Sexta">
+                                <input type="radio" name="dia" id="Sexta"> <p>Sexta</p>
+                            </label>
+
+                            <label for="Sabado">
+                                <input type="radio" name="dia" id="Sabado"> <p>Sabado</p>
+                            </label>
+                            <hr>
+                        </div>
+                        <div id="opt-4">
+                            <h3>Horarios</h3>
+                            <label for="hr1">
+                                <input type="radio" name="horario" id="hr1"> <p>1 Horario </p>
+                            </label>
+
+                            <label for="hr2">
+                                <input type="radio" name="horario" id="hr2"> <p>2 Horario </p>
+                            </label>
+
+                            <label for="hr3">
+                                <input type="radio" name="horario" id="hr3"> <p>3 Horario </p>
+                            </label>
+
+                            <label for="hr4">
+                                <input type="radio" name="horario" id="hr4"> <p>4 Horario </p>
+                            </label>
+                        </div>
+                        <div id="opt-5">
+                            <input type="submit" value="Adicionar Materia">
+                        </div>
+                        
+                    </form>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="contadortempo.js">
+    </script>
+</body>
+</html>
