@@ -73,8 +73,6 @@ const getUserByEmail = async (req, res) => {
     return res.status(200).json(userFound);
 }
 
-
-
 const registerClassToUser = async (req, res) => {
     var tempClasses = []
     const username = req.body.userInfo;
@@ -100,4 +98,14 @@ const registerClassToUser = async (req, res) => {
     }
 }
 
-module.exports = { getUser, registerUser, deleteUser, getUserByEmail, registerClassToUser };
+//notfinnished
+const getClassesOfUser = async (req, res)=>{
+    const username = req.body.userInfo;
+
+    const foundUser = await User.findOne({ where: { UserName: username } });
+
+    if(!foundUser.Classes) return res.status(400).json('');
+
+}
+
+module.exports = { getUser, registerUser, deleteUser, getUserByEmail, registerClassToUser, getClassesOfUser };
