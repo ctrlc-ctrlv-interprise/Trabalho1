@@ -7,9 +7,9 @@ class User extends Model {
         type:DataTypes.STRING(50),
         primaryKey: true
       },
-      FirstName: DataTypes.STRING,
+      Username: DataTypes.STRING,
       Password: DataTypes.STRING,
-      Classes: DataTypes.STRING,
+      Classes: DataTypes.JSON,
       Roles: {
         type: DataTypes.INTEGER,
         defaultValue: 200

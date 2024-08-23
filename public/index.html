@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UFERSA - SIGAA</title>
+    <script src="script.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body onload="renderClasses()">
     <div class="container">
         <header>
             <div id="cabecalho">
@@ -19,7 +20,7 @@
                     <span>A-</span>
                     <span id="ajuda">Ajuda?</span>
                     <span id="tempo-sessao">Tempo de Sessão: 00:25</span>
-                    <span id="sair">SAIR</span>
+                    <span onclick="logout()" id="sair">SAIR</span>
                 </div>
             </div>
         </header>
@@ -42,7 +43,7 @@
                 <form action="selecao-materias.js" >
                     <fieldset>
                         <legend>Matérias</legend>
-                        <table>
+                        <table id="classTable">
                             <thead>
                               <tr>
                                 <th></th>
@@ -300,7 +301,7 @@
                         
                     </fieldset>
                     <p>
-                        <input type="submit" value="Escolher matérias pré selecionadas">
+                        <input onclick="handleSubmit()" type="button" value="Escolher matérias pré selecionadas">
                     </p>
                 </form>
                 
