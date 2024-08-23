@@ -5,6 +5,13 @@ const { Op } = require('sequelize');
 
 function isNumber(n) { return /^-?[\d.]+(?:e-?\d+)?$/.test(n); } 
 
+const getClassTimeInformation = async (req, res)=>{
+    const classFound = await Class.findAll({where:{ClassCode:req.body.ClassCode}});
+    if(!classFound) return res.sendStatus(400);
+    const result = getTimeInformation(classFound.ClassTimeCode);
+    return res.status(200).json(result);
+}
+
 const getClass = async (req, res)=>{
     const result = await Class.findAll();
     return res.status(200).json(result);
@@ -16,9 +23,23 @@ const registerClass = async (req, res)=>{
 
     const ClassTimeCode = req.body.ClassTimeCode;
     const ClassName = req.body.ClassName;
+    var tempResult = '';
+    var tempFull = '';
+    console.log(ClassTimeCode.length<1)
+    if(ClassTimeCode.length>1) {
+        var temp1 =  getTimeInformation(ClassTimeCode[0]).classFull
+        var temp2 =  getTimeInformation(ClassTimeCode[1]).classFull
+        var tempResult = temp1.concat(temp2);
+        tempResult.map((e)=>tempFull= tempFull + e);
+    }else{
+        tempResult = getTimeInformation(ClassTimeCode).classFull
+        tempResult.map((e)=>tempFull= tempFull + e);
+    }
+    const ClassTimeFull =tempFull;
     const ClassCode = req.body.ClassCode;
     if(!ClassName|| !ClassTimeCode || !ClassCode) return res.status(400).json("Some data is empty")
     const result = await Class.create({
+    ClassTimeFull,
     ClassName,
     ClassTimeCode,
     ClassCode,
@@ -78,6 +99,75 @@ const verifyConflit = async (req, res)=>{
     if(conflict.length==0) return res.status(200).json("NO CONFLICT");
     return res.status(200).json(conflict);
 }
+// Worst code ever writen, but at least works
+function getTimeFull(time, start, turn){
+    switch (turn) {
+        case 'M':
+            switch(time){
+                case 1:
+                    if(start) return " 7:00"
+                    return " 7:55"
+                case 2:
+                    if(start) return " 7:55"
+                    return " 8:50"
+                case 3:
+                    if(start) return " 8:50"
+                    return " 9:45"
+                case 4:
+                    if(start) return " 9:55"
+                    return " 10:50"
+                case 5:
+                    if(start) return " 10:50"
+                    return " 11:45"
+                case 5:
+                    if(start) return " 11:45"
+                    return " 12:40"
+            }
+            break;
+        case 'V':
+            switch(time){
+                case 1:
+                    if(start) return " 13:00"
+                    return " 13:55"
+                case 2:
+                    if(start) return " 13:55"
+                    return " 14:50"
+                case 3:
+                    if(start) return " 14:50"
+                    return " 15:45"
+                case 4:
+                    if(start) return " 15:55"
+                    return " 16:50"
+                case 5:
+                    if(start) return " 16:50"
+                    return " 17:45"
+                case 5:
+                    if(start) return " 17:45"
+                    return " 18:40"
+            }
+            break;
+        case 'N':
+            switch(time){
+                case 1:
+                    if(start) return " 18:50"
+                    return " 19:45"
+                case 2:
+                    if(start) return " 19:45"
+                    return " 20:40"
+                case 3:
+                    if(start) return " 20:40"
+                    return " 21:35"
+                case 4:
+                    if(start) return " 21:35"
+                    return " 22:30"
+            }
+            break;
+        default:
+            return "NOT FOUND"
+            break;
+    }
+
+}
 
 
 //TODO: ADD TIME TO FULL
@@ -93,6 +183,7 @@ function getTimeInformation(ClassTimeInformationCode){
     const classTurn = ClassTimeInformationCode.substring(i,i+1);
     const classTime = ClassTimeInformationCode.substring(i+1).split('').map((e)=> parseInt(e));
     
+    console.log(classDay)
     if(classDay.length>1){
         var tempFull = [];
         for(var i =0; classDay.length>i; i++){
@@ -118,7 +209,7 @@ function getTimeInformation(ClassTimeInformationCode){
         }
         inFull[0] = `${tempFull[0]} e ${tempFull[1]}`;
     }else{
-        switch(classDay){
+        switch(classDay[0]){
             case 2:
                 inFull[0] = "Segunda";
             break;
@@ -142,18 +233,20 @@ function getTimeInformation(ClassTimeInformationCode){
     
     switch (classTurn) {
         case 'M':
-            inFull[1] = "Matutino";
+            inFull[1] = ", turno matutino";
             break;
         case 'V':
-            inFull[1] = "Vespertino";
+            inFull[1] = ", turno vespertino";
             break;
         case 'N':
-            inFull[1] = "Noturno";
+            inFull[1] = ", turno noturno";
             break;
         default:
             inFull[1] = "NOT FOUND";
             break;
     }
+
+    inFull[2] = (getTimeFull(classTime[0], true, classTurn) +'-' + getTimeFull(classTime[classTime.length-1], false, classTurn))
 
     const ClassTimeInformationCodeResult = {
     classDay: classDay,
@@ -196,4 +289,4 @@ function verifyTime(ClassCode1, ClassCode2){
     return true;
 }
 
-module.exports = {getClass, registerClass, deleteClass, getClassByCode, verifyConflit};
+module.exports = {getClass, registerClass, deleteClass, getClassByCode, verifyConflit, getClassTimeInformation};

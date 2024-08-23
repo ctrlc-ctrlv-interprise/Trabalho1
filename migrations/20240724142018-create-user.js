@@ -9,6 +9,9 @@ module.exports = {
         type: Sequelize.STRING
       },
       ClassTimeCode:{
+        type: Sequelize.JSON
+      },
+      ClassTimeFull:{
         type: Sequelize.STRING
       },
       ClassName: {

@@ -22,7 +22,7 @@ function getCookie(name) {
 
 function logout() {
     deleteCookie('userInfo')
-    window.location.replace('./home.html')
+    window.location.replace('./login.html')
 }
 
 async function renderClasses(){
@@ -53,11 +53,12 @@ async function renderClasses(){
         classTD3.textContent = "NULO"
         classTR.appendChild(classTD3)
         const classTD4 = document.createElement('td');
-        classTD4.textContent = classesResult[i].ClassTimeCode
+        classTD4.textContent = classesResult[i].ClassTimeFull
         classTR.appendChild(classTD4)
         const classTD5 = document.createElement('td');
         classTD5.textContent = 'op'
         classTR.appendChild(classTD5)
+        console.log(classesResult)
     }
 }
 
