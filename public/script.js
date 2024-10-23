@@ -27,6 +27,9 @@ function logout() {
 
 async function renderClasses(){
     console.log(getCookie("userInfo"))
+    const username = document.getElementById('pname')
+    username.textContent = getCookie("userInfo");
+
     const father = document.getElementById('classTable')
     const classes = await fetch("http://localhost:3333/")
     const classesResult = await classes.json()
