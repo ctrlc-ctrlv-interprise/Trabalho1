@@ -6,6 +6,7 @@ class Class extends Model {
             ClassName:DataTypes.STRING(10),
             ClassTimeCode: DataTypes.JSON,
             ClassTimeFull: DataTypes.STRING(10),
+            ClassRequirements: DataTypes.JSON,
             ClassCode: {
                 type: DataTypes.STRING(10),
                 primaryKey: true

@@ -20,8 +20,37 @@ document.getElementById('formularioUpload').addEventListener('submit', function(
             console.log("Conteúdo do arquivo:", conteudoArquivo);
 
             // Armazena o conteúdo em uma variável
-            const dadosArquivo = conteudoArquivo;
+            var dadosArquivo = conteudoArquivo;
             console.log("Dados do arquivo armazenados:", dadosArquivo); 
+
+            var indexStart;
+            var indexEnd;
+                indexStart = dadosArquivo.indexOf("ClassName:") + 10;
+                indexEnd = dadosArquivo.indexOf(";");
+                const className = (dadosArquivo.substring(indexStart, indexEnd)).trim();
+
+                dadosArquivo = dadosArquivo.replace(dadosArquivo.substring(0, indexEnd+1), "")
+
+                indexStart = dadosArquivo.indexOf("ClassTimeCode:") + 14;
+                indexEnd = dadosArquivo.indexOf(";");
+                const classTimeCode = (dadosArquivo.substring(indexStart, indexEnd)).trim();
+
+                dadosArquivo = dadosArquivo.replace(dadosArquivo.substring(0, indexEnd+1), "")
+                indexStart = dadosArquivo.indexOf("ClassCode:") + 10;
+                indexEnd = dadosArquivo.indexOf(";");
+                const classCode = (dadosArquivo.substring(indexStart, indexEnd)).trim();
+
+                dadosArquivo = dadosArquivo.replace(dadosArquivo.substring(0, indexEnd+1), "")
+                
+            
+            const classInfo = {
+                ClassName: className,
+                ClassTimeCode: classTimeCode,
+                ClassCode: classCode
+            }
+
+            console.log(submit(classInfo))
+            
 
             // Exibe o conteúdo do arquivo em um alerta
             //alert("Conteúdo do arquivo:\n" + dadosArquivo);
@@ -34,3 +63,15 @@ document.getElementById('formularioUpload').addEventListener('submit', function(
     }
 
 });
+
+async function submit(classInfo){
+    const myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        const result = await fetch("http://localhost:3333/", {
+            method: "POST",
+                body: JSON.stringify(classInfo),
+                headers: myHeaders,
+            });
+        if(result.status !=200) return alert('Informação invalida');
+        return alert('Matéria adicionada')
+}

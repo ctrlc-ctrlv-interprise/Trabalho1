@@ -17,6 +17,9 @@ module.exports = {
       ClassName: {
         type: Sequelize.STRING
       },
+      ClassRequirements: {
+        type: Sequelize.JSON
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

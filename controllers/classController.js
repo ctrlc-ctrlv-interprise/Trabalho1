@@ -25,14 +25,14 @@ const registerClass = async (req, res)=>{
     const ClassName = req.body.ClassName;
     var tempResult = '';
     var tempFull = '';
-    console.log(ClassTimeCode.length<1)
-    if(ClassTimeCode.length>1) {
+    if(Array.isArray(ClassTimeCode)) {
         var temp1 =  getTimeInformation(ClassTimeCode[0]).classFull
         var temp2 =  getTimeInformation(ClassTimeCode[1]).classFull
         var tempResult = temp1.concat(temp2);
         tempResult.map((e)=>tempFull= tempFull + e);
     }else{
         tempResult = getTimeInformation(ClassTimeCode).classFull
+        
         tempResult.map((e)=>tempFull= tempFull + e);
     }
     const ClassTimeFull =tempFull;
