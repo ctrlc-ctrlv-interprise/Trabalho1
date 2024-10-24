@@ -87,7 +87,7 @@ const verifyConflit = async (req, res)=>{
         ClassCode:classCodes,
     },
 });
-    
+    console.log('ac')
     Result.map((e)=>classResult.push(e.dataValues))
     userClasses.map((e)=>classResult.push(e.dataValues))
     for(var i =0; i<classResult.length; i++){
@@ -183,7 +183,6 @@ function getTimeInformation(ClassTimeInformationCode){
     const classTurn = ClassTimeInformationCode.substring(i,i+1);
     const classTime = ClassTimeInformationCode.substring(i+1).split('').map((e)=> parseInt(e));
     
-    console.log(classDay)
     if(classDay.length>1){
         var tempFull = [];
         for(var i =0; classDay.length>i; i++){
@@ -262,7 +261,8 @@ function getTimeInformation(ClassTimeInformationCode){
 function verifyTime(ClassCode1, ClassCode2){
     const classInformation1 = getTimeInformation(ClassCode1.ClassTimeCode);
     const classInformation2 = getTimeInformation(ClassCode2.ClassTimeCode);
-    console.log(classInformation1)
+    console.log(ClassCode1)
+    console.log("b")
     console.log(classInformation2)
     var conflict = false;
     var sameDay = false;

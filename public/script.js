@@ -1,12 +1,15 @@
+//cria os cookies
 function setCookie(name, value, daysToExpire) {
     const date = new Date();
     date.setTime(date.getTime() + (daysToExpire * 24 * 60 * 60 * 1000))
     let expires = "expires=" + date.toUTCString();
     document.cookie = `${name}=${value}; ${expires}; path=/`
 }
+//deleta os cookies
 function deleteCookie(name) {
     setCookie(name, null, null)
 }
+//traduz os cookies
 function getCookie(name) {
     const cDecoded = decodeURIComponent(document.cookie);
     const cArray = cDecoded.split("; ");
@@ -26,10 +29,12 @@ function logout() {
 }
 
 async function renderClasses(){
-    console.log(getCookie("userInfo"))
+    //define o nome de usuario
     const username = document.getElementById('pname')
     username.textContent = getCookie("userInfo");
 
+
+    //renderiza as matérias
     const father = document.getElementById('classTable')
     const classes = await fetch("http://localhost:3333/")
     const classesResult = await classes.json()
@@ -59,18 +64,21 @@ async function renderClasses(){
         classTD4.textContent = classesResult[i].ClassTimeFull
         classTR.appendChild(classTD4)
         const classTD5 = document.createElement('td');
-        classTD5.textContent = 'op'
+        classTD5.textContent = 'OPTATIVA'
         classTR.appendChild(classTD5)
         console.log(classesResult)
     }
 }
 
+//registra a materia para o usuario
 async function handleSubmit(){
     const classes = document.querySelectorAll('input');
     var checkedClasses = [];
     for(var i = 0; i<(classes.length-1);i++){
         if(classes[i].checked) checkedClasses.push(classes[i].id)
     }
+
+    //verifica o conflito
     const result = await fetch("http://localhost:3333/conflict", {
         headers: {
             "Content-Type": "application/json",
@@ -98,7 +106,7 @@ async function handleSubmit(){
     alert(submitResponse);
 }
 
-
+//faz login
 async function loginController(){
     const username = document.getElementById('username');
     const password = document.getElementById('password');
@@ -108,6 +116,7 @@ async function loginController(){
         Password:password.value
     }
 
+    //verifica se os dados estão corretos
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     const result = await fetch("http://localhost:3333/login", {

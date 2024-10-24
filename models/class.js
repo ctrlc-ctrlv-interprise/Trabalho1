@@ -4,7 +4,7 @@ class Class extends Model {
     static init(sequelize) {
         super.init({
             ClassName:DataTypes.STRING(10),
-            ClassTimeCode: DataTypes.JSON,
+            ClassTimeCode: DataTypes.STRING(10),
             ClassTimeFull: DataTypes.STRING(10),
             ClassRequirements: DataTypes.JSON,
             ClassCode: {

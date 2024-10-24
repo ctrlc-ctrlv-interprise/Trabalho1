@@ -1,11 +1,11 @@
 const express = require('express');
 const {getClass, registerClass, deleteClass, getClassByCode, verifyConflit, getClassTimeInformation}= require('./controllers/classController.js');
 const {getUser, registerUser, deleteUser, getUserByEmail, registerClassToUser}= require('./controllers/userController.js');
-const jwtVerify = require('./middleware/jwtVerify.js');
 const handleLogin = require('./controllers/authController.js');
 const router = express.Router();
 const app = express();
 
+//rotas de API
 router.post('/conflict', verifyConflit);
 router.post('/login', handleLogin);
 router.post('/getClassTimeInformation', getClassTimeInformation);
@@ -19,6 +19,7 @@ router.post('/user', registerUser);
 router.post('/registerToUser', registerClassToUser);
 router.delete('/user', deleteUser);
 
+//rotas das paginas
 router.get('/index', (req, res)=>{
     res.sendFile('C:/Users/wilso/Documents/Trabalho1/public/index.html')
 });
