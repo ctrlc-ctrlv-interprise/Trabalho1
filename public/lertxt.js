@@ -22,6 +22,7 @@ document.getElementById('formularioUpload').addEventListener('submit', function(
             // Armazena o conteúdo em uma variável
             var dadosArquivo = conteudoArquivo;
             console.log("Dados do arquivo armazenados:", dadosArquivo); 
+            for(var i =0; i>50; i++){
 
             var indexStart;
             var indexEnd;
@@ -50,7 +51,7 @@ document.getElementById('formularioUpload').addEventListener('submit', function(
             }
 
             console.log(submit(classInfo))
-            
+        }            
 
             // Exibe o conteúdo do arquivo em um alerta
             //alert("Conteúdo do arquivo:\n" + dadosArquivo);
