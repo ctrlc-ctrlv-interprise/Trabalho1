@@ -20,6 +20,7 @@ const getClass = async (req, res)=>{
 const registerClass = async (req, res)=>{
     const codeExist = await Class.findByPk(req.body.ClassCode)
     if(codeExist) return res.status(400).json("Code Already exist");
+    console.log(req.body.ClassTimeCode)
     const ClassTimeCode = req.body.ClassTimeCode;
     const ClassName = req.body.ClassName;
     var tempResult = '';
@@ -51,6 +52,7 @@ const registerClass = async (req, res)=>{
     ClassName,
     ClassTimeCode: ClassTimeCodeF,
     ClassCode,
+    ClassRequirements: {"a":"OPTATIVA"}
 }); 
     return res.json(result);
 }

@@ -21,8 +21,6 @@ document.getElementById('formularioUpload').addEventListener('submit', function(
 
             // Armazena o conteúdo em uma variável
             var dadosArquivo = conteudoArquivo;
-            console.log("Dados do arquivo armazenados:", dadosArquivo); 
-            for(var i =0; i>50; i++){
 
             var indexStart;
             var indexEnd;
@@ -39,7 +37,7 @@ document.getElementById('formularioUpload').addEventListener('submit', function(
                 dadosArquivo = dadosArquivo.replace(dadosArquivo.substring(0, indexEnd+1), "")
                 indexStart = dadosArquivo.indexOf("ClassCode:") + 10;
                 indexEnd = dadosArquivo.indexOf(";");
-                const classCode = (dadosArquivo.substring(indexStart, indexEnd)).trim();
+                const classCode = (dadosArquivo.substring(indexStart, indexEnd)).trimStart();
 
                 dadosArquivo = dadosArquivo.replace(dadosArquivo.substring(0, indexEnd+1), "")
                 
@@ -50,8 +48,7 @@ document.getElementById('formularioUpload').addEventListener('submit', function(
                 ClassCode: classCode
             }
 
-            console.log(submit(classInfo))
-        }            
+            submit(classInfo)      
 
             // Exibe o conteúdo do arquivo em um alerta
             //alert("Conteúdo do arquivo:\n" + dadosArquivo);
@@ -68,10 +65,13 @@ document.getElementById('formularioUpload').addEventListener('submit', function(
 async function submit(classInfo){
     const myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
+        console.log('aa')
         const result = await fetch("http://localhost:3333/", {
             method: "POST",
                 body: JSON.stringify(classInfo),
-                headers: myHeaders,
+                headers: {
+                    "Content-Type": "application/json",
+                }
             });
         if(result.status !=200) return alert('Informação invalida');
         return alert('Matéria adicionada')

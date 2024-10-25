@@ -64,9 +64,8 @@ async function renderClasses(){
         classTD4.textContent = classesResult[i].ClassTimeFull
         classTR.appendChild(classTD4)
         const classTD5 = document.createElement('td');
-        classTD5.textContent = 'OPTATIVA'
+        classTD5.textContent = JSON.parse(classesResult[i].ClassRequirements).a
         classTR.appendChild(classTD5)
-        console.log(classesResult)
     }
 }
 
